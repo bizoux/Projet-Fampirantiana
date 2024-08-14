@@ -59,7 +59,7 @@ app.get("/listaMpiaramanompo",(req,res)=>{
 })
 
 
-                                    // MANDAHATRA NY LISITRA EO @ TABILAO
+                                    // MANDAHATRA NY LISITRA EO @ TABILAO io
 
 app.get("/listaAnjaraFampirantiana",(req,res)=>{
     var req = "select daty,ora,anarana1,anarana2 from anjara order by daty asc,idAnjara asc";
