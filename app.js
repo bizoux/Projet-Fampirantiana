@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 const { startOfMonth, addDays, eachDayOfInterval, getDay } = require('date-fns');
-var mysql = require("mysql");
+const mysql = require('mysql2');
 var cors = require("cors");
 const multer = require('multer');
 var bodyParser = require("body-parser");
@@ -14,11 +14,14 @@ app.use(bodyParser.json());
 
 
 // CONNEXION AU BASE DE DONNEES 1
-var db = mysql.createConnection({
+var db = mysql.createPool({
     host:process.env.HOST,
     user:process.env.DB_USERNAME,
     password:process.env.DB_PASSWORD,
-    database:process.env.DB_NAME
+    database:process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10, // Ajustez selon vos besoins
+    queueLimit: 0
 });
 
 // CONNEXION AU BASE DE DONNEES 1
