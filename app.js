@@ -325,8 +325,51 @@ app.post("/fampidirana",(req,res)=>{
     
 });
 
-// HAMAFA NY ANJARA FAMPIRANTIANA REHETRA
+// HAKA AN'IREO ANJARA HO HAVAOZINA
+app.get("/MakaId/:idMpiaramanompo",(req,res)=>{
+    const{idMpiaramanompo} = req.params;
+    var requeteAnarana = "SELECT *FROM mpiaramanompo where idMpiaramanompo=?";
+    db.query(requeteAnarana,[idMpiaramanompo],(err,resultat)=>{
+        if(err) throw err;
+        else{
+            res.send(resultat);                
+        }
+    });
+    
+});
 
+
+// HANAVAO NY ANARANA MPIARA-MANOMPO 
+
+app.put("/fanovanaAnarana/:id",(req,res)=>{
+    const{id}=req.params;
+    const{AnaranaVaovao}=req.body;
+    const requeteFanavaozana="update mpiaramanompo set anarana=? where idMpiaramanompo=?"
+    db.query(requeteFanavaozana,[AnaranaVaovao,id],(error,result)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.send(result);
+            console.log("Modification avec succès!");
+        }
+    });
+});
+
+
+// HAMAFA ANARANA
+
+app.delete("/fafanaAnarana/:idFafana",(req,res)=>{
+    const{idFafana}=req.params;
+    const requeteFamafana="delete from mpiaramanompo where idMpiaramanompo=?"
+    db.query(requeteFamafana,[idFafana],(error,result)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.send(result);
+            console.log("Suppression avec succès!");
+        }
+    });
+});
 
 
 
@@ -498,6 +541,11 @@ function generateDates(startDate) {
 
      
     
-app.listen(port,function(){
-    console.log("Le serveur fonctionne sur le port "+port+":"+" http://127.0.0.1:"+port);
+// app.listen(port,function(){
+//     console.log("Le serveur fonctionne sur le port "+port+":"+" http://127.0.0.1:"+port);
+// });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Serveur démarré sur le port ${PORT}`);
 });
