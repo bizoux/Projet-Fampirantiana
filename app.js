@@ -37,6 +37,7 @@ var db = mysql.createPool({
 //         }
 // });
 
+// Connection au base de donnees de mysql2
 db.getConnection((err, connection) => {
     if (err) {
         console.error('Erreur de connexion à la base de données :', err.stack);
@@ -44,6 +45,7 @@ db.getConnection((err, connection) => {
     }
     console.log('Connexion à la base de données réussie !');
     connection.release(); // Libération de la connexion après vérification
+
 });
 
 
