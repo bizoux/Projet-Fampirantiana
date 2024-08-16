@@ -1,20 +1,11 @@
 var express = require("express");
 var app = express();
-var port = 3000;
 const { startOfMonth, addDays, eachDayOfInterval, getDay } = require('date-fns');
-const axios = require('axios');
 var mysql = require("mysql");
 var cors = require("cors");
 const multer = require('multer');
 var bodyParser = require("body-parser");
-var jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
-const nodemailer = require('nodemailer');
-const notifier = require('node-notifier');
 const path = require("path");
-const { google } = require('googleapis');
 const dotenv = require('dotenv');
 // Charger les variables d'environnement depuis le fichier .env
 dotenv.config();
