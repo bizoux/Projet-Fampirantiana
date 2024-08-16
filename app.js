@@ -26,15 +26,24 @@ var db = mysql.createPool({
 
 // CONNEXION AU BASE DE DONNEES 1
 
-db.connect(function(err){
-    if(err)
-    {
-        console.log("Echec de connection au base de données1");
+// db.getConnection(function(err){
+//     if(err)
+//     {
+//         console.log("Echec de connection au base de données1");
+//     }
+//     else
+//     {
+//         console.log("Connection au base de données avec succès!\n");
+//         }
+// });
+
+db.getConnection((err, connection) => {
+    if (err) {
+        console.error('Erreur de connexion à la base de données :', err.stack);
+        return;
     }
-    else
-    {
-        console.log("Connection au base de données avec succès!\n");
-        }
+    console.log('Connexion à la base de données réussie !');
+    connection.release(); // Libération de la connexion après vérification
 });
 
 
